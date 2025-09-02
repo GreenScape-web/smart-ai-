@@ -275,6 +275,11 @@
         // --- Firebase Initialization and Auth ---
         function initializeFirebase() {
             try {
+                if (Object.keys(firebaseConfig).length === 0) {
+                    console.error("Firebase config is missing or empty.");
+                    displayMessage('حدث خطأ في تهيئة قاعدة البيانات: الإعدادات مفقودة.', 'received-message');
+                    return;
+                }
                 const app = initializeApp(firebaseConfig);
                 db = getFirestore(app);
                 auth = getAuth(app);
